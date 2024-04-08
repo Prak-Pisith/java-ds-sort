@@ -53,6 +53,13 @@ class Song implements Comparable <Song>{
     }
 }
 
+// Custom Comparator
+class ArtistComparator implements Comparator <Song> {
+    public int compare(Song obj1, Song obj2) {
+        return obj1.getArtist().compareTo(obj2.getArtist());
+    }
+}
+
 class MockSongV2 {
 
     public static List<Song> getSongList() {
@@ -71,23 +78,39 @@ class MockSongV2 {
 
 class Main {
     public static void main(String[] args) {
-//        List<String> songList = MockSong.getSongList();
-//        System.out.println("Orginal List ====>");
-//        System.out.println(songList);
-//
-//        Collections.sort(songList);
-//        System.out.println("Collection Sorted List ====>");
-//        System.out.println(songList);
+
+        System.out.println("************ Sorting String ***************");
+        List<String> songList = MockSong.getSongList();
+        System.out.println("Orginal List ====>");
+        System.out.println(songList);
+
+        Collections.sort(songList);
+        System.out.println("Collection Sorted List ====>");
+        System.out.println(songList);
+        System.out.println("************ ############## ***************");
 
         // =========
 
+        System.out.println("************ Sorting Object ***************");
         List<Song> songListV2 = MockSongV2.getSongList();
 
         System.out.println("Orginal List ====>");
         System.out.println(songListV2);
 
         Collections.sort(songListV2);
+        System.out.println("Collection Sorted List By Title ====>");
         System.out.println(songListV2);
+        System.out.println("************ ############## ***************");
+
+        // ==========
+
+        System.out.println("************ Sorting Object ***************");
+        ArtistComparator artistComparator = new ArtistComparator();
+        songListV2.sort(artistComparator);
+        System.out.println("Collection Sorted List by Artist Comparator ====>");
+        System.out.println(songListV2);
+        System.out.println("************ ############## ***************");
+
 
     }
 }
